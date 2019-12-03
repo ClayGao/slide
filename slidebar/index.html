@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<header>
+    <title>Car Model</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./style.css" />
+</header>
+<body>
+    <div class="wrapper">
+        <div class="title"><h1>Drag the bar</h1></div>
+        <input class="slide" type="range" min="1" max="72" step="1" value="37">
+        <img src="./car/37.jpg" />
+    </div>
+    <script>
+        const slide = document.querySelector(".slide");
+        let img = document.querySelector("img")
+        let moveStatus = false;
+        let tmp = 0;
+
+        slide.addEventListener("mousedown",function(e) {
+            moveStatus = true;
+        })
+
+        document.addEventListener("mousemove",function(e){
+            if (moveStatus === true && tmp !== slide['value']) {
+                tmp = slide['value']
+                img.setAttribute("src",`./car/${slide['value']}.jpg`);
+            }
+        })
+
+        document.addEventListener("mouseup",function(){
+            moveStatus = false;
+        })
+    </script>
+</body>
+
